@@ -1,0 +1,40 @@
+1. Open CMD
+2. Change Directory and locate project path
+3.pyinstaller --onefile abc.py /// pyinstaller --one directory abc.py
+
+
+
+type cd {folder location} to move to that folder.
+pyinstaller -w {the name of your python file}.
+
+
+https://nitratine.net/blog/post/convert-py-to-exe/
+
+++++++++++++++++++++++++++==
+To hide Console :
+pyinstaller -w keylogger.pyw
+
+import link : 
+https://nitratine.net/blog/post/convert-py-to-exe/
+++++++++++++++++++++++++++==
+
+
+https://github.com/brentvollebregt/auto-py-to-exe
+
+1. code >> Download zip
+2. Extract those zip
+3. Open CMD prompt
+4. Cd and locate the extract zip
+5.pip install -r requirements.txt
+6.python run.py or double click on run.py in directory.
+
+
+pip install --trusted-host=pypi.org --trusted-host=files.pythonhosted.org -r requirements.txt
+pip install --trusted-host=pypi.org --trusted-host=files.pythonhosted.org 
+start virtual environment---
+
+install module auto_py_to_exe
+
+
+python -m auto_py_to_exe
+auto_py_to_exe

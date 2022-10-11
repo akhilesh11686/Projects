@@ -1,0 +1,26 @@
+878553	21-5055
+
+
+SELECT owner, table_name, column_name 
+FROM all_tab_columns 
+WHERE column_name LIKE '%APPENDIX%';
+
+SELECT * FROM V_USC_DASHBOARD_LIST
+
+
+
++++++++++++++++++++++++++++++++++++++++++++
+SELECT * FROM V_USC_DASHBOARD_LIST WHERE usc_header_code = '21-5055' AND amdt_number = '22';
+APPENDIX_UID	APPENDIX_CODE
+4666541	A-1
+
+
+(select * from Usc_Detail where appendix_uid in (SELECT appendix_uid FROM V_USC_DASHBOARD_LIST WHERE usc_header_code = '21-5055' AND amdt_number = '22'));
+(SELECT * FROM V_USC_DASHBOARD_LIST WHERE usc_header_code = '21-5055' AND amdt_number = '22');
+
+
+
+Port gRoup
+Select * From Usc_Port_Grp_Det where Port_Grp_Uid = '2164968';
+Select * From Usc_Port_Grp;
+

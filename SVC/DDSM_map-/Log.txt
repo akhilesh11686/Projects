@@ -1,0 +1,119 @@
+27-06-2022 12:06:40 : Processing started
+27-06-2022 12:06:41 : "Listes.xls" was found at "C:\Extract Macro" and opened successfully
+27-06-2022 12:06:42 : "Target File Template.xlsx" was found at "C:\Extract Macro" and opened successfully
+27-06-2022 12:06:43 : Saved interim copy of "Target File Template.xls" as "C:\Users\ssc.achauhan\Desktop\svc\DDSM_map-\Copy of 22-0125-8 Geodis USA Inc SSCTMB_Target.xlsx"
+27-06-2022 12:06:43 : Processing " Cover, Contact, MQC & Delmas Contract"
+27-06-2022 12:06:45 : End of "cover" tab
+27-06-2022 12:06:45 : Beginning of "bullets" tab
+27-06-2022 12:06:45 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:45 : Wrote "bullets" entry  #1
+27-06-2022 12:06:45 : Wrote "bullets" entry  #2
+27-06-2022 12:06:45 : Wrote "bullets" entry  #3
+27-06-2022 12:06:45 : Wrote "bullets" entry  #4
+27-06-2022 12:06:45 : End of "bullets" tab
+27-06-2022 12:06:45 : Beginning of "ports" tab
+27-06-2022 12:06:45 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:45 : Wrote "ports" entry  #1
+27-06-2022 12:06:45 : Wrote "ports" entry  #2
+27-06-2022 12:06:45 : Wrote "ports" entry  #3
+27-06-2022 12:06:46 : Wrote "ports" entry  #4
+27-06-2022 12:06:46 : Wrote "ports" entry  #5
+27-06-2022 12:06:46 : Wrote "ports" entry  #6
+27-06-2022 12:06:46 : Wrote "ports" entry  #7
+27-06-2022 12:06:46 : Wrote "ports" entry  #8
+27-06-2022 12:06:46 : Wrote "ports" entry  #9
+27-06-2022 12:06:46 : Wrote "ports" entry  #10
+27-06-2022 12:06:46 : Wrote "ports" entry  #11
+27-06-2022 12:06:46 : Wrote "ports" entry  #12
+27-06-2022 12:06:47 : Wrote "ports" entry  #13
+27-06-2022 12:06:47 : End of "ports" tab
+27-06-2022 12:06:47 : Beginning of "rates_conditions" tab
+27-06-2022 12:06:47 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:47 : Wrote "rates_conditions" entry  #1
+27-06-2022 12:06:47 : Wrote "rates_conditions" entry  #2
+27-06-2022 12:06:47 : End of "rates_conditions" tab
+27-06-2022 12:06:47 : Beginning of "rates_tar_charge" tab
+27-06-2022 12:06:47 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:47 : Wrote "rates_tar_charge" entry  #1
+27-06-2022 12:06:47 : End of "rates_tar_charge" tab
+27-06-2022 12:06:47 : Beginning of "rates_tar_rule" tab
+27-06-2022 12:06:47 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:47 : Wrote "rates_tar_rule" entry  #1
+27-06-2022 12:06:47 : End of "rates_tar_rule" tab
+27-06-2022 12:06:47 : Beginning of "special_equipment" tab
+27-06-2022 12:06:47 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:47 : Wrote "special_equipment" entry  #1
+27-06-2022 12:06:47 : Wrote "special_equipment" entry  #2
+27-06-2022 12:06:47 : End of "special_equipment" tab
+27-06-2022 12:06:47 : Beginning of "special_equipment_tar_charge" tab
+27-06-2022 12:06:47 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : End of "special_equipment_tar_charge" tab
+27-06-2022 12:06:48 : Beginning of "special_equipment_tar_rule" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : End of "special_equipment_tar_rule" tab
+27-06-2022 12:06:48 : Beginning of "reefer" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : Wrote "reefer" entry  #1
+27-06-2022 12:06:48 : Wrote "reefer" entry  #2
+27-06-2022 12:06:48 : End of "reefer" tab
+27-06-2022 12:06:48 : Beginning of "reefer_tar_charge" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : End of "reefer_tar_charge" tab
+27-06-2022 12:06:48 : Beginning of "reefer_tar_rule" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : End of "reefer_tar_rule" tab
+27-06-2022 12:06:48 : Beginning of "arbitrary" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : Processing "ORIGIN ARBITRARY TABLE" section
+27-06-2022 12:06:48 : Wrote "arbitrary" entry  #1
+27-06-2022 12:06:48 : Wrote "arbitrary" entry  #2
+27-06-2022 12:06:48 : Wrote "arbitrary" entry  #3
+27-06-2022 12:06:48 : Processing "DESTINATION ARBITRARY TABLE" section
+27-06-2022 12:06:48 : Wrote "arbitrary" entry  #4
+27-06-2022 12:06:48 : End of "arbitrary" tab
+27-06-2022 12:06:48 : Beginning of "arbitrary_charge" tab
+27-06-2022 12:06:48 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:48 : Processing "ORIGIN ARBITRARY TABLE" section
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #1
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #2
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #3
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #4
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #5
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #6
+27-06-2022 12:06:49 : Processing "DESTINATION ARBITRARY TABLE" section
+27-06-2022 12:06:49 : Wrote "arbitrary_charge" entry  #7
+27-06-2022 12:06:50 : Wrote "arbitrary_charge" entry  #8
+27-06-2022 12:06:50 : End of "arbitrary_charge" tab
+27-06-2022 12:06:50 : Beginning of "note_1" tab
+27-06-2022 12:06:50 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:51 : Wrote "note_1" entry  #1
+27-06-2022 12:06:51 : End of "note_1" tab
+27-06-2022 12:06:51 : Beginning of "note_2" tab
+27-06-2022 12:06:51 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:51 : Wrote "note_2" entry  #1
+27-06-2022 12:06:52 : Wrote "note_2" entry  #2
+27-06-2022 12:06:52 : End of "note_2" tab
+27-06-2022 12:06:52 : Beginning of "note_2_settings" tab
+27-06-2022 12:06:52 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:53 : Wrote "note_2_settings" entry  #1
+27-06-2022 12:06:53 : Wrote "note_2_settings" entry  #2
+27-06-2022 12:06:53 : End of "note_2_settings" tab
+27-06-2022 12:06:53 : Beginning of "note_3" tab
+27-06-2022 12:06:53 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:54 : Wrote "note_3" entry  #1
+27-06-2022 12:06:54 : Wrote "note_3" entry  #2
+27-06-2022 12:06:54 : End of "note_3" tab
+27-06-2022 12:06:54 : Beginning of "gri" tab
+27-06-2022 12:06:54 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:54 : End of "gri" tab
+27-06-2022 12:06:54 : Beginning of "pss" tab
+27-06-2022 12:06:54 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:54 : End of "pss" tab
+27-06-2022 12:06:54 : Beginning of "note_4" tab
+27-06-2022 12:06:54 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:06:54 : Wrote "note_4" entry  #1
+27-06-2022 12:06:55 : Wrote "note_4" entry  #2
+27-06-2022 12:06:55 : End of "note_4" tab
+27-06-2022 12:09:57 : Beginning of "det_dem" tab
+27-06-2022 12:11:20 : Processing "APPENDIX P-1 (USA-CARIB LATAM)"
+27-06-2022 12:12:19 : Wrote "det_dem" entry  #1

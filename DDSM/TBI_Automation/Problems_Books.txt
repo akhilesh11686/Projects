@@ -1,0 +1,55 @@
+Reference : https://sparkbyexamples.com/pandas/pandas-map-function-explained/
+
+1. Drops columns
+df.drop("U_Keys",axis=1, inplace=True)
+
+2.Drops Duplicate
+cutoff.drop_duplicates(keep=False,inplace=True)  
+=>>False (Drop all duplicate ) >>First (Except first occurance) >>Last(Except Last occurance)
+
+3.Replace blank cell with 0
+df['Voyage Reference'].fillna(0,inplace=True)
+
+4.map/merge **https://datagy.io/vlookup-in-python-and-pandas-using-map-or-merge/ 
+
+5.Rename to existing columns
+df.rename(columns={'Voyage Reference':'Voyage'},inplace=True)
+
+6.Concate 2 data series.
+df['Uniq'] = df['Voyage'].astype(str)+'|'+df['Stop Location'].astype(str)
+
+7.Sort the pandas series
+cutoff['Uniq'] = cutoff['Uniq'].sort_values(axis=0,ascending=True, inplace=False)
+dfRO = dfRO.sort_values(by='VR - Rollover Date',ascending=True)
+
+8.Vlookup function in python 
+df = pd.merge(df,cutoff[['Uniq','Cut-Off']],on='Uniq',how='left')
+
+9. Converting pandas.tslib.Timestamp to datetime python
+d2 = rw['Cut-Off_y'].to_pydatetime() #with date & time
+d2 = rw['Cut-Off_y'].to_pydatetime().date() # with date
+
+10.Add multiple Blank columns
+colmns1 = ['Fault','Split','Original Booking','Door']
+df[colmns1] = ""
+
+11. Right function pandas dataseries 
+df['Job Reference'].str[-1:]
+
+12.Selecting multiple columns in a Pandas dataframe
+nRoll = dfRO[['BKH - Booking Ref','VR - Fault',]]
+
+13.Filter all rows that do not contain letters (alpha) in ´pandas´
+df =  df[df['Col A.'].str.contains('[A-Za-z]')]
+
+14. Filter Alphabet in column excluding blank
+df[(df['Split'].str.contains('[A-Za-z]',na=False)) 
+
+15. Convert Data type of pandas series
+df['Job Reference'] = df['Job Reference'].astype(str)
+
+16.CountIf function in pytho
+df['COUNTIFS'] = df.groupby('user_id').cumcount() + 1
+
+17.remove duplicate
+dd = dfRO.drop_duplicates(subset='BKH - Booking Ref',keep=False)

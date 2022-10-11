@@ -1,0 +1,15 @@
+1. Filter float column
+df3 = df['Verify Gross Mass'].dropna(how='all')
+
+2.Filter Float column with Blank
+df111 = df[df['Verify Gross Mass'].isna()]
+
+3.Repeat value (duplicate ) to empty value
+df1.loc[df1['Container Number']==i,'Verify Gross Mass']= max(df1[df1['Container Number']==i]['Verify Gross Mass']) 
+
+4.Operator reference
+https://swdevnotes.com/python/2021/how-to-filter-a-pandas-dataframe/
+
+
+
+

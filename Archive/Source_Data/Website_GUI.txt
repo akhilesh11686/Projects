@@ -1,0 +1,24 @@
+Online GUI : 
+
+https://visualtk.com/
+http://www.python-gui-builder.com/
+https://www.tutorialsteacher.com/python/create-gui-using-tkinter-python
+
+
+Progress Bar
+https://pythonguides.com/python-tkinter-animation/
+
+important widget 
+https://ipywidgets.readthedocs.io/en/stable/examples/Widget%20List.html#SelectMultiple
+
+gui code
+https://www.programcreek.com/python/example/105563/tkinter.LabelFrame
+https://www.educba.com/tkinter-labelframe/?source=leftnav
+
+
+jupyter 
+http://localhost:8888/
+
+
+https://www.codegrepper.com/code-examples/python/how+to+set+background+image+in+python+tkinter
+

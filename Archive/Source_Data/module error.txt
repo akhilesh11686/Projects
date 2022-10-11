@@ -1,0 +1,3 @@
+ModuleNotFoundError: No module named 'exceptions'
+Uninstall docx pip uninstall docx
+next pip install python-docx

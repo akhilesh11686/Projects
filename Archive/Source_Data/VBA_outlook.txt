@@ -1,0 +1,69 @@
+Sub autoMail()
+
+Dim ol As Outlook.Application
+Dim ml As MailItem
+
+Dim olAccounts As Variant
+Dim acnt As Variant
+
+Dim wb As Workbook
+Dim shtEmlT, shtChngDep As Worksheet
+
+
+Set wb = ThisWorkbook
+Set shtEmlT = wb.Worksheets("Email_Tbl")
+Set shtChngDep = wb.Worksheets("Change of Depot")
+
+    
+    rng = shtEmlT.Cells(Rows.Count, 1).End(xlUp).Row
+    
+    Set ol = New Outlook.Application
+    
+    Set olAccounts = ol.Session.Accounts
+    For Each oAccount In olAccounts
+        If InStr(1, oAccount, "vgm", vbTextCompare) <> 0 Then
+            acnt = oAccount
+        End If
+    Next
+    
+    For i = 2 To rng
+        Set ml = ol.CreateItem(olMailItem)
+        
+        'get details
+        bkg = shtEmlT.Cells(i, 1)
+        bkgPrty = shtEmlT.Cells(i, 2)
+        dcdPrty = shtEmlT.Cells(i, 3)
+        
+        If Len(bkg) < 3 Or Len(bkgPrty) < 3 Or Len(dcdPrty) < 3 Then
+            MsgBox "LARA extracted details are incorrect", vbCritical, "missing"
+            End
+        End If
+        
+        To_ = shtEmlT.Cells(i, 4)
+        cc_ = shtEmlT.Cells(i, 5)
+        subj_ = shtChngDep.Cells(1, 1)
+        body_ = shtChngDep.Cells(2, 1)
+        body1_ = shtChngDep.Cells(3, 1)
+        
+        body1_ = Replace(body1_, "XX", bkg)
+        body1_ = Replace(body1_, "YY", bkgPrty)
+        body1_ = Replace(body1_, "ZZ", dcdPrty)
+        
+        sign_ = shtChngDep.Cells(4, 1)
+        
+        With ml
+        
+            .To = To_
+            .CC = cc_
+            .Subject = subj_
+            .Body = body_ & body1_ & vbCrLf & vbCrLf & sign_
+            .SendUsingAccount = ol.Session.Accounts(acnt)
+            .Send
+'            .Display
+        End With
+        
+    Next i
+
+Set ol = Nothing
+
+End Sub

@@ -1,0 +1,25 @@
+Sub DivvyRange()
+Dim iRows As Long
+Dim BreakRow As Long
+Dim OldRange As Range
+Dim NewRange As Range
+
+Set OldRange = Range("a_1")
+
+iRows = OldRange(50000, 1).End(xlUp).Row - OldRange(1).Row + 1
+
+Set NewRange = OldRange.Resize(iRows)
+
+OldRange.Name.Delete
+NewRange.Name = "a_1"
+
+'now divide range in two and name the two ranges MyRange1 and MyRange2
+On Error Resume Next
+Range("MyRange1").Name.Delete
+Range("MyRange2").Name.Delete
+On Error GoTo 0
+BreakRow = (NewRange.Rows.Count + 1) / 2
+NewRange.Resize(BreakRow).Name = "MyRange1"
+NewRange.Offset(BreakRow).Resize(NewRange.Rows.Count - BreakRow).Name = "MyRange2"
+
+End Sub

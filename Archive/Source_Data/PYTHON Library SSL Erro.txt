@@ -1,0 +1,16 @@
+echo %PATH%
+python -V
+
+python -m venv env
+env\Scripts\Activate.bat
+
+SSL Certificate Error
+pip install --trusted-host=pypi.org --trusted-host=files.pythonhosted.org pandas
+deactivate
+
+<<<https://github.com/pypa/pip/issues/5363>>>>
+
+
+
+
+pip install --trusted-host=pypi.org --trusted-host=files.pythonhosted.org ipykernel

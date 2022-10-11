@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/1026483/is-there-a-way-to-crack-the-password-on-an-excel-vba-project
+http://www.theofficeexperts.com/VBASamples/Excel02.htm
+http://www.siddharthrout.com/2013/04/24/unprotecting-vba-project-password-using-a-password-that-you-know/
+http://www.excelbee.com/excel-password-remover
+http://lbeliarl.blogspot.in/

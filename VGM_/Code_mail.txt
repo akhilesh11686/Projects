@@ -1,0 +1,169 @@
+
+# import win32com.client as win32
+# import os
+# import pandas as pd
+# from pathlib import Path
+
+
+# bkID = pd.ExcelFile('Bookler_Emails_List.xlsx')
+# mailT = bkID.parse('m5')
+# df_5 = pd.read_excel('ResulF.xlsx')
+
+# df_5_1= df_5[df_5['Chaser_Type']=='Chaser1']
+# if len(df_5_1)>1:
+#     UnqJobRef = df_5_1['Job Reference'].drop_duplicates()
+
+#     mailFile=os.curdir + "\\VGMProcessTemplate.xlsx"
+#     outlook = win32.Dispatch('outlook.application')
+#     oacctouse = None
+#     for oacc in outlook.Session.Accounts._dispobj_:
+#         if oacc.SmtpAddress == 'ssc.achauhan@cma-cgm.com':
+#             oacctouse = oacc
+#             break
+
+#     # Loop for job reference
+#     for rData in UnqJobRef:
+#         mail = outlook.CreateItem(0)
+#         if oacctouse:
+#             mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctouse))
+
+#         tbl = df_5_1[(df_5_1['Job Reference']== rData)]
+#         nTbl = tbl[['Booking POL','Voyage','Vessel Name','Job Reference','Container Number','Cut Off Local Date','Remaining time before cut off']]
+#         nTbl.reset_index().rename(columns={'Job Reference':'Booking','Container Number':'Container','Booking POL':'POL','Voyage':'Voyage Ref','Cut Off Local Date':'VGM Cut-off','Remaining time before cut off':'Day remaining to send VGM'},inplace=True)
+#         nTbl.reset_index(inplace=True)
+#         nTbl = nTbl.drop(['index'],axis=1)
+#         mailT['Body11'].fillna("",inplace=True)
+
+#         mail.To = tbl['Combo_Emails'].to_list()[0]
+#         mail.Subject = 'VGM declaration Missing'
+#         # mail.attachement = mailFile
+#         kk = str(Path().absolute()) + "\\VGMProcessTemplate.xlsx"
+#         mail.Attachments.Add(kk)
+        
+#         # nTbl.drop(['index'],axis=1)
+#         mail.HTMLBody = "{0}".format(mailT.to_html(header=False,index=False,justify='left',border='0'))
+#         mail.HTMLBody = mail.HTMLBody.replace("{0}",nTbl.to_html())
+#         mail.Display()
+#         df_5_1.loc[(df_5_1['Job Reference']== rData)&(df_5_1['Chaser_Type']=='Chaser1'),'sent_status'] = 'Sent'
+#         # mail.Send()
+# df_5_1.to_excel('Result_Chaser1.xlsx')
+#%%
+
+
+# import win32com.client as win32
+# import os
+# import pandas as pd
+# from pathlib import Path
+
+
+# bkID = pd.ExcelFile('Bookler_Emails_List.xlsx')
+# mailT = bkID.parse('m5_2')
+# df_5 = pd.read_excel('ResulF.xlsx')
+
+# df_5_2= df_5[df_5['Chaser_Type']=='Chaser2']
+# if len(df_5_2)>1:
+
+
+#     report_path = 'Excel'
+#     if not os.path.exists(report_path):
+#         os.makedirs(report_path)    
+
+#     UnqJobRef = df_5_2['Voyage'].drop_duplicates()
+
+#     mailFile=os.curdir + "\\VGMProcessTemplate.xlsx"
+#     outlook = win32.Dispatch('outlook.application')
+#     oacctouse = None
+#     for oacc in outlook.Session.Accounts._dispobj_:
+#         if oacc.SmtpAddress == 'ssc.achauhan@cma-cgm.com':
+#             oacctouse = oacc
+#             break
+
+#     # Loop for job reference
+#     for rData in UnqJobRef:
+#         mail = outlook.CreateItem(0)
+#         if oacctouse:
+#             mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctouse))
+
+#         tbl = df_5_2[(df_5_2['Voyage']== rData)]
+#         nTbl = tbl[['Booking POL','Voyage','Vessel Name','Job Reference','Container Number','Cut Off Local Date','Remaining time before cut off','Booker Id Email']]
+#         nTbl.rename(columns={'Job Reference':'Booking','Container Number':'Container','Booking POL':'POL','Voyage':'Voyage Ref','Cut Off Local Date':'VGM Cut-off','Remaining time before cut off':'Day remaining to send VGM','Booker Id Email':'Customer email addresses'},inplace=True)
+#         nTbl.reset_index(inplace=True)
+#         nTbl = nTbl.drop(['index'],axis=1)
+#         nTbl.to_csv(str(Path().absolute()) + "\\Excel\\"+'chaser2.csv')
+
+#         mailT['Body11'].fillna("",inplace=True)
+
+#         mail.To = tbl['Combo_Emails'].to_list()[0]
+
+#         vyg = tbl['Voyage'].to_list()[0]
+#         POL = tbl['Booking POL'].to_list()[0]
+#         cutoff = str(tbl['Cut Off Local Date'].to_list()[0])
+
+#         mail.Subject = 'VGM CHASER SUMMARY -'+ vyg + " - " + POL + " - " + 'VGM Cut-off : ' + cutoff
+#         # mail.attachement = mailFile
+#         kk = str(Path().absolute()) + "\\VGMProcessTemplate.xlsx"
+#         kk2 = str(Path().absolute()) + "\\Excel\\"+'chaser2.csv'
+
+#         mail.Attachments.Add(kk)
+#         mail.Attachments.Add(kk2)
+#         # nTbl.drop(['index'],axis=1)
+#         mail.HTMLBody = "{0}".format(mailT.to_html(header=False,index=False,justify='left',border='0'))
+#         mail.HTMLBody = mail.HTMLBody.replace("{0}",nTbl.to_html())
+#         mail.Display()
+#         df_5_2.loc[(df_5_2['Voyage']== rData)&(df_5_2['Chaser_Type']=='Chaser1'),'sent_status'] = 'Sent'
+#         # mail.Send()
+#         # remove file 
+#         os.remove(kk2)
+# df_5_2.to_excel('Result_chaser2.xlsx')
+
+#%%
+
+
+# import win32com.client as win32
+# import os
+# import pandas as pd
+# from pathlib import Path
+
+
+# bkID = pd.ExcelFile('Bookler_Emails_List.xlsx')
+# mailT = bkID.parse('m5_3')
+# df_5 = pd.read_excel('ResulF.xlsx')
+
+# df_5_3= df_5[df_5['Chaser_Type']=='Chaser3']
+# if len(df_5_3)>1:
+#     UnqJobRef = df_5_3['Voyage'].drop_duplicates()
+
+#     mailFile=os.curdir + "\\VGMProcessTemplate.xlsx"
+#     outlook = win32.Dispatch('outlook.application')
+#     oacctouse = None
+#     for oacc in outlook.Session.Accounts._dispobj_:
+#         if oacc.SmtpAddress == 'ssc.achauhan@cma-cgm.com':
+#             oacctouse = oacc
+#             break
+
+#     # Loop for job reference
+#     for rData in UnqJobRef:
+#         mail = outlook.CreateItem(0)
+#         if oacctouse:
+#             mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctouse))
+
+#         tbl = df_5_3[(df_5_3['Voyage']== rData)]
+#         nTbl = tbl[['Booking POL','Voyage','Vessel Name','Job Reference','Container Number','Cut Off Local Date','Remaining time before cut off']]
+#         nTbl.reset_index().rename(columns={'Job Reference':'Booking','Container Number':'Container','Booking POL':'POL','Voyage':'Voyage Ref','Cut Off Local Date':'VGM Cut-off','Remaining time before cut off':'Day remaining to send VGM'},inplace=True)
+#         nTbl.reset_index(inplace=True)
+#         nTbl = nTbl.drop(['index'],axis=1)
+#         mailT['Body11'].fillna("",inplace=True)
+
+#         mail.To = tbl['Combo_Emails'].to_list()[0]
+#         mail.Subject = 'Attention: VGM declaration Missing post VGM Cut-off'
+#         # mail.attachement = mailFile
+#         kk = str(Path().absolute()) + "\\VGMProcessTemplate.xlsx"
+#         mail.Attachments.Add(kk)
+        
+#         # nTbl.drop(['index'],axis=1)
+#         mail.HTMLBody = "{0}".format(mailT.to_html(header=False,index=False,justify='left',border='0'))
+#         mail.HTMLBody = mail.HTMLBody.replace("{0}",nTbl.to_html())
+#         mail.Display()
+#         df_5_3.loc[(df_5_3['Voyage']== rData),'sent_status'] = 'Sent'
+#         # mail.Send()
+# df_5_3.to_excel('Result_Chaser3.xlsx')

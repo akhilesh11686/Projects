@@ -1,0 +1,5 @@
+Download : https://www.selenium.dev/downloads/ 
+64bit Idriver.exe
+
+2) In internet browser, press alt >> view >> change zoom to 100%
+3) In internet browser, press alt >> Tool >> Internet Option >> security >>check box to all 4 zoom level

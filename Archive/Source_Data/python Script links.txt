@@ -1,0 +1,43 @@
+OCR PDF->Txt
+https://www.ocr2edit.com/result#j=0d05ca5b-cefc-4e28-8ade-9c3687a11036
+https://tinywow.com/pdf/extract-text
+
+VS code **
+https://code.visualstudio.com/docs/python/
+
+Pandas ******
+https://pandas.pydata.org/docs/refer
+https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html
+
+Group By
+https://www.geeksforgeeks.org/pandas-groupby/
+
+Download & Progress bar
+https://www.section.io/engineering-education/terminal-progress-bar-python/
+
+Analog wath
+https://www.krazyprogrammer.com/2020/12/analog-clock-in-python.html
+https://medium.com/@aryamankukal/a-virtual-analog-clock-created-with-python-aa0289bd87fa
+
+
+outlook mail with muliple file
+https://pbpython.com/excel-email.html
+
+
+Read Excel sheet 
+https://stackoverflow.com/questions/26521266/using-pandas-to-pd-read-excel-for-multiple-worksheets-of-the-same-workbook
+
+
+
+Modules in other folder .. import module
+https://k0nze.dev/posts/python-relative-imports-vscode/
+
+Dataframe work
+https://www.javatpoint.com/pandas-dataframe-to_excel
+
+Excel append 
+https://www.youtube.com/watch?v=DroafWQXqDw
+
+
+Internet 
+https://simpleit.rocks/python/selenium-webdriver-exception-executable-in-path-error/

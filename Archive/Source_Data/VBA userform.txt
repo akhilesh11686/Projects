@@ -1,0 +1,150 @@
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+Option Explicit
+ 
+#If Win64 Then
+    Private Declare PtrSafe Function GetWindowLongPtr _
+        Lib "user32.dll" Alias "GetWindowLongPtrA" ( _
+        ByVal hwnd As LongPtr, _
+        ByVal nIndex As Long) As LongPtr
+ 
+    Private Declare PtrSafe Function SetWindowLongPtr _
+        Lib "user32.dll" Alias "SetWindowLongPtrA" ( _
+        ByVal hwnd As LongPtr, _
+        ByVal nIndex As Long, _
+        ByVal dwNewLong As LongPtr) As LongPtr
+ 
+    Private Declare PtrSafe Function FindWindowA _
+        Lib "user32.dll" ( _
+        ByVal lpClassName As String, _
+        ByVal lpWindowName As String) As LongPtr
+         
+    Private Declare PtrSafe Function DrawMenuBar _
+        Lib "user32.dll" ( _
+        ByVal hwnd As LongPtr) As Long
+#Else
+    Private Declare Function GetWindowLongPtr _
+        Lib "user32.dll" Alias "GetWindowLongA" ( _
+        ByVal hwnd As Long, _
+        ByVal nIndex As Long) As Long
+     
+    Private Declare Function SetWindowLongPtr _
+        Lib "user32.dll" Alias "SetWindowLongA" ( _
+        ByVal hwnd As Long, _
+        ByVal nIndex As Long, _
+        ByVal dwNewLong As Long) As Long
+ 
+    Private Declare Function FindWindowA _
+        Lib "user32.dll" ( _
+        ByVal lpClassName As String, _
+        ByVal lpWindowName As String) As Long
+         
+    Private Declare Function DrawMenuBar _
+        Lib "user32.dll" ( _
+        ByVal hwnd As Long) As Long
+#End If
+ 
+Private Sub UserForm_Initialize()
+    CreateMenu
+End Sub
+ 
+Private Sub CreateMenu()
+     
+    Const GWL_STYLE As Long = -16
+    Const WS_SYSMENU As Long = &H80000
+    Const WS_MINIMIZEBOX As Long = &H20000
+    Const WS_MAXIMIZEBOX As Long = &H10000
+     
+    #If Win64 Then
+        Dim lngFrmWndHdl As LongPtr
+        Dim lngStyle As LongPtr
+    #Else
+        Dim lngFrmWndHdl As Long
+        Dim lngStyle As Long
+    #End If
+     
+    lngFrmWndHdl = FindWindowA(vbNullString, Me.Caption)
+     
+    lngStyle = GetWindowLongPtr(lngFrmWndHdl, GWL_STYLE)
+    lngStyle = lngStyle Or WS_SYSMENU       'Add SystemMenu
+    lngStyle = lngStyle Or WS_MINIMIZEBOX   'Add MinimizeBox
+    lngStyle = lngStyle Or WS_MAXIMIZEBOX   'Add MaximizeBox
+ 
+    SetWindowLongPtr lngFrmWndHdl, GWL_STYLE, lngStyle
+     
+    DrawMenuBar lngFrmWndHdl
+ 
+End Sub

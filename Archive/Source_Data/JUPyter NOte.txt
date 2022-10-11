@@ -1,0 +1,13 @@
+Goto specific folder
+cd folder position then 
+python -m notebook
+
+
+For Intellisence 
+%config IPCompleter.greedy=True
+
+Alt+Enter for new cells\
+
+
+Outlook
+https://www.youtube.com/watch?v=iP1Ko9sFkzs&list=PLHnSLOMOPT11njaNmENJN6p2ro9MTc7t_&index=13

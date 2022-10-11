@@ -1,0 +1,22 @@
+Ctl+shift + P => setting font
+Just copy "editor.fontSize": 18 into your setting.json of the editor.
+
+
+Ctl + "+" => save the changes.
+
+{ "key": "ctrl+numpad_add",      "command": "editor.action.fontZoomIn" },
+{ "key": "shift+ctrl+=",         "command": "editor.action.fontZoomIn" },
+{ "key": "ctrl+=",               "command": "editor.action.fontZoomIn" },
+{ "key": "ctrl+numpad_subtract", "command": "editor.action.fontZoomOut" },
+{ "key": "shift+ctrl+-",         "command": "editor.action.fontZoomOut" },
+{ "key": "ctrl+-",               "command": "editor.action.fontZoomOut" },
+{ "key": "ctrl+numpad0",         "command": "editor.action.fontZoomReset" },
+{ "key": "ctrl+0",               "command": "editor.action.fontZoomReset" },
+
+
+change the Font Size in Visual Studio Work Environment :
+CTRL + COMMA.
+
+
+Zoom out = Ctrl + Shift + , (comma)
+Zoom in = Ctrl + Shift + . (full stop/period)

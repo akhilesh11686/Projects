@@ -1,0 +1,4 @@
+Regex : https://regex101.com/
+
+VBA#
+https://excelkingdom.blogspot.com/search/label/XL_VBA_Conditional
