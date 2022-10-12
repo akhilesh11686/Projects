@@ -61,8 +61,8 @@ def xlMail_dist():
 
     outlook = win32com.client.Dispatch("Outlook.Application")
     oacctuse = None
-    for oac in outlook.Session.Accounts._dispobj_:
-    # for oac in outlook.Session.Accounts:
+    # for oac in outlook.Session.Accounts._dispobj_:
+    for oac in outlook.Session.Accounts:
         if oac.DisplayName == frm:
             oacctuse = oac
             break
@@ -73,22 +73,26 @@ def xlMail_dist():
     for i in Uniqu_First:
         # frm = 'fromMail'
         mails= rfMail[rfMail['PORTS'].str.contains(i,regex=True,na=False)]['New']
-        mlBody = missVGM[missVGM['First POL']==i][['Vessel Name @ PTS','Voyage @ PTS','ETA @ PTS (GMT)','Container Number','Operator','ISO Code','Verify Gross Mass','First POL','POL Code','PTS Code','Next POD','Final POD','Booking number']]
-        subjMail = "MISSING VGM -- "
+        if len(mails)>0:
+            mlBody = missVGM[missVGM['First POL']==i][['Vessel Name @ PTS','Voyage @ PTS','ETA @ PTS (GMT)','Container Number','Operator','ISO Code','Verify Gross Mass','First POL','POL Code','PTS Code','Next POD','Final POD','Booking number']]
+            subjMail = "MISSING VGM -- "
 
 
-        mail = outlook.CreateItem(0)
-        if oacctuse:
-            mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctuse))
-        
-        mail.To = ' '.join([str(elem) for elem in mails.to_list()])
-        mail.Subject = subjMail  + " " +  "".join( mlBody['First POL'][:1])
-        mail.HTMLBody = "Dear team,<br><br>Good day,<br><br>Please note VGM missing in LARA for below containers.<br><br>Kindly update the VGM in LARA.<br><br>{}<br><br>Note : Any charges received at transshipment port due to missing VGM, will be raised back to POL account.<br><br>".format(mlBody.to_html(header=True,index=False,justify='left',border='5'))
-        # df.loc[index,'Mail_Status'] = "Sent"
-        missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Sent"
-        # mail.Display()                 
-        mail.Send()        
-    missVGM.to_excel("Sent_Mails_Status.xlsx")
+            mail = outlook.CreateItem(0)
+            if oacctuse:
+                mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctuse))
+            
+            mail.To = ' '.join([str(elem) for elem in mails.to_list()])
+            mail.Subject = subjMail  + " " +  "".join( mlBody['First POL'][:1])
+            mail.HTMLBody = "Dear team,<br><br>Good day,<br><br>Please note VGM missing in LARA for below containers.<br><br>Kindly update the VGM in LARA.<br><br>{}<br><br>Note : Any charges received at transshipment port due to missing VGM, will be raised back to POL account.<br><br>".format(mlBody.to_html(header=True,index=False,justify='left',border='5'))
+            # df.loc[index,'Mail_Status'] = "Sent"
+            missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Sent"
+            # mail.Display()                 
+            mail.Send()        
+        else:
+            missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Not Sent"
+
+    missVGM.to_excel("Sent_Mails_Status_11.xlsx")
     messagebox.showinfo("Thank you!!","Completed..")    
     
 # 06
@@ -123,8 +127,8 @@ def xl_06():
 
     outlook = win32com.client.Dispatch("Outlook.Application")
     oacctuse = None
-    for oac in outlook.Session.Accounts._dispobj_:
-    # for oac in outlook.Session.Accounts:
+    # for oac in outlook.Session.Accounts._dispobj_:
+    for oac in outlook.Session.Accounts:
         if oac.DisplayName == frm:
             oacctuse = oac
             break
@@ -137,22 +141,26 @@ def xl_06():
     for i in Uniqu_First:
         # frm = 'fromMail'
         mails= rfMail[rfMail['PORTS'].str.contains(i,regex=True,na=False)]['New']
-        mlBody = missVGM[missVGM['First POL']==i][['Vessel Name @ CALL','Voyage @ CALL','Container Number','Operator','ISO Code','Verified Gross Mass','First POL','Next POD','Final POD','Booking Number']]
-        subjMail = "MISSING VGM -- "
+        if len(mails)>0:
+            mlBody = missVGM[missVGM['First POL']==i][['Vessel Name @ CALL','Voyage @ CALL','Container Number','Operator','ISO Code','Verified Gross Mass','First POL','Next POD','Final POD','Booking Number']]
+            subjMail = "MISSING VGM -- "
 
 
-        mail = outlook.CreateItem(0)
-        if oacctuse:
-            mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctuse))
-        
-        mail.To = ' '.join([str(elem) for elem in mails.to_list()])
-        mail.Subject = subjMail  + " " +  "".join( mlBody['First POL'][:1])
-        mail.HTMLBody = "Dear team,<br><br>Good day,<br><br>Please note VGM missing in LARA for below containers.<br><br>Kindly update the VGM in LARA.<br><br>{}<br><br>Note : Any charges received at transshipment port due to missing VGM, will be raised back to POL account.<br><br>".format(mlBody.to_html(header=True,index=False,justify='left',border='5'))
-        # df.loc[index,'Mail_Status'] = "Sent"
-        missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Sent"
-        # mail.Display()                 
-        mail.Send()        
-    missVGM.to_excel("Sent_Mails_Status.xlsx")
+            mail = outlook.CreateItem(0)
+            if oacctuse:
+                mail._oleobj_.Invoke(*(64209, 0, 8, 0, oacctuse))
+            
+            mail.To = ' '.join([str(elem) for elem in mails.to_list()])
+            mail.Subject = subjMail  + " " +  "".join( mlBody['First POL'][:1])
+            mail.HTMLBody = "Dear team,<br><br>Good day,<br><br>Please note VGM missing in LARA for below containers.<br><br>Kindly update the VGM in LARA.<br><br>{}<br><br>Note : Any charges received at transshipment port due to missing VGM, will be raised back to POL account.<br><br>".format(mlBody.to_html(header=True,index=False,justify='left',border='5'))
+            # df.loc[index,'Mail_Status'] = "Sent"
+            missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Sent"
+            # mail.Display()                 
+            mail.Send()
+        else:
+            missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Not Sent"
+
+    missVGM.to_excel("Sent_Mails_Status_06.xlsx")
     messagebox.showinfo("Thank you!!","Completed..")    
         
 
