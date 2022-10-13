@@ -7,7 +7,10 @@ import pandas as pd
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import messagebox
-import pikepdf
+from pikepdf import Pdf
+from glob import glob
+
+
 
 root = tk.Tk(className=' PDF Combining..')
 root.geometry("700x200")
@@ -26,16 +29,24 @@ def getMerge():
         try:
             lst.append(rw[0])
             lst.append(rw[1])
-            merger = PdfFileMerger()            
-            pdf_files = [rw[0] +'.pdf', rw[1] +'.pdf']
-            for pdf_file in pdf_files:                                   
-                #Append PDF files
-                merger.append(pdf_file)
+            # merger = PdfFileMerger()             
 
-            # os.chdir('./Output')    
-            merger.write('Output//'+rw[2]+'.pdf')
-            # os.chdir('../')
-            merger.close()
+            pdf_files = [rw[0] +'.pdf', rw[1] +'.pdf']
+            pdf = Pdf.new()
+            for pdf_file in pdf_files:                  
+                # for file in glob('*.pdf'):
+                src = Pdf.open(pdf_file)
+                pdf.pages.extend(src.pages)
+            # pdf.save('merged.pdf')
+
+                #Append PDF files
+                # merger.append(pdf_file)
+
+            os.chdir('./Output')    
+            pdf.save('.\\' + rw[2]+'.pdf')
+            # merger.write('Output//'+rw[2]+'.pdf')
+            os.chdir('../')
+            # merger.close()
             lst.clear()
         except Exception:
             continue
