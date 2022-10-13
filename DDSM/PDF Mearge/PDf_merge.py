@@ -7,6 +7,7 @@ import pandas as pd
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import messagebox
+import pikepdf
 
 root = tk.Tk(className=' PDF Combining..')
 root.geometry("700x200")
@@ -25,9 +26,9 @@ def getMerge():
         try:
             lst.append(rw[0])
             lst.append(rw[1])
-            merger = PdfFileMerger()
+            merger = PdfFileMerger()            
             pdf_files = [rw[0] +'.pdf', rw[1] +'.pdf']
-            for pdf_file in pdf_files:
+            for pdf_file in pdf_files:                                   
                 #Append PDF files
                 merger.append(pdf_file)
 
