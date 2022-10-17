@@ -1,6 +1,7 @@
 
 #%%
 
+# update version 17Oct
 from PyPDF2 import PdfFileMerger
 import os
 import pandas as pd
@@ -9,7 +10,7 @@ import tkinter.font as tkFont
 from tkinter import messagebox
 from pikepdf import Pdf
 from glob import glob
-
+import importlib_metadata
 
 
 root = tk.Tk(className=' PDF Combining..')
