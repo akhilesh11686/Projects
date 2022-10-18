@@ -38,3 +38,6 @@ install module auto_py_to_exe
 
 python -m auto_py_to_exe
 auto_py_to_exe
+
+importlib.metadata.PackageNotFoundError: No package metadata was found for pikepdf python python
+** pyinstaller --onefile --copy-metadata pyproj "example.py" **
