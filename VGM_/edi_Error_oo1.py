@@ -29,10 +29,14 @@ def browse(txt):
 filePath = browse('Missing VGM EDI')
 df = pd.ExcelFile(filePath)
 VGM_Cont = pd.ExcelFile(browse('VGM contact'))
+AgncyFndr = pd.ExcelFile(browse('Agency Finder'))
+gblPort = pd.ExcelFile(browse('Global ports'))
 
 edf = df.parse('page')
 excl_POL = VGM_Cont.parse('Excluded POL of Europe')
 vgmCnt = VGM_Cont.parse('VGM CONTACTS')
+Agency_finder = AgncyFndr.parse('Sheet0')
+gblPort_sht = gblPort.parse('Global port codes')
 
 # pt3
 edf.drop('SOC',axis=1,inplace=True)
@@ -122,20 +126,57 @@ rslt.loc[rslt['POL'].str.startswith('GB', na=False),'Booking Contact']='Lpl.vgmc
 # pts13
 rslt['BOL number'] = rslt['BOL number'].apply(lambda x: x.replace("*#",""))
 
-# pts14
-kk = rslt[(rslt['Booking Status'].astype('str').str.contains("30|60|70",regex=True,na=True)) & ~((rslt['Channel'].str.contains("0004581947|VGM_CSV channel")) & (rslt['SB_CONTACT'].astype('str').str.contains("ssc.vgm@cma-cgm.com")))]
-rslt = rslt[~(rslt['Booking'].str.contains("|".join(kk['Booking'].to_list())))]
 
+# pts14
+rslt.drop(rslt[(rslt['Booking Status'].astype('str').str.contains("30|60|70",regex=True,na=True)) & ~((rslt['Channel'].str.contains("0004581947|VGM_CSV channel")) & (rslt['SB_CONTACT'].astype('str').str.contains("ssc.vgm@cma-cgm.com")))].index,inplace=True)
+
+rslt.loc[rslt['Booking Contact'].astype(str).str.contains('ssc.|SSC.'),'Booking Contact'] =""
+rslt['POL'].fillna('NA',inplace=True)
+
+for i,id in rslt.iterrows():    
+    pol = id['POL']
+    vyg = id['Voyage']
+    if pol !='NA':
+        eml = vgmCnt.loc[vgmCnt['Port Codes']==pol,'VGM Contact  ']
+        if len(eml)>0:
+            rslt.loc[i,'Booking Contact'] =eml.to_string(index=False)
+        else:
+            vyg1 = vyg[-2:]
+            if vyg1=='NL':
+                yg1 = 'ANL'
+            elif vyg1=='PL':
+                yg1 = 'APL'
+            elif vyg1=='MA':
+                yg1 = 'CMA'
+
+            eml = vgmCnt.loc[vgmCnt['Port Codes']==pol+yg1,'VGM Contact  ']
+            if len(eml)>0:
+                rslt.loc[i,'Booking Contact'] =eml.to_string(index=False)
+
+# pts15
+# If agency finder not available then conside multiple email
+for i, id in rslt[rslt['Booking Contact'].isnull() & ~(rslt['POL'].str.contains('NA')) ].iterrows():
+    city = gblPort_sht.loc[gblPort_sht['POINT_CODE']==id['POL'],'FULL_NAME'].to_string(index=False)
+    city = city.strip()
+    cntry = gblPort_sht.loc[gblPort_sht['POINT_CODE']==id['POL'],'COUNTRY NAME'].to_string(index=False)
+    brnd = id['Voyage'][-2:].strip()
+    cntry = cntry.strip()
+    
+    out =Agency_finder.loc[Agency_finder['Country'].str.contains(cntry.upper()) & Agency_finder['Operational function'].str.contains('VGM') & Agency_finder['City'].str.contains(city.upper())& Agency_finder['Brand/Agency network'].str.contains(brnd.upper()),'Email']
+    if len(out)>0:
+        rslt.loc[i,'Booking Contact'] = out.to_string(index=False)
+    else:
+        out =Agency_finder.loc[Agency_finder['Country'].str.contains(cntry.upper()) & Agency_finder['Operational function'].str.contains('VGM',regex=True) & Agency_finder['Brand/Agency network'].str.contains(brnd.upper()),'Email']
+        if len(out)>2:
+            rslt.loc[i,'Booking Contact'] = out.to_list()[0]
+
+# pts 16
+rslt.loc[rslt['BOL number'].str[:3]=='DXB','Booking Contact']=='dxb.vnair@cma-cgm.com;DXB.DLOGANATHAN@cma-cgm.com;dxb.nhiran@cma-cgm.com'
+print('Done')
 #%%
 
 import pandas as pd
-import re
 
-rslt = pd.read_excel('s.xlsx')
-#%%
-
-print('Done')
-
-
+rslt = pd.read_excel('4.xlsx')
 
 
