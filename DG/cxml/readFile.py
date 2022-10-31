@@ -64,7 +64,7 @@ def proc():
         if df.loc[i,'UN No']!="-":        
             # vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) ]
             lst = cntDf.loc[cntDf['Container_size']==id['Type'],'Map'].to_list()[0]
-            vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) & (Hrp['container type'].str.contains(lst,regex=True,na=True)) ]
+            vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(float(id['UN No']))) & (Hrp['container type'].str.contains(lst,regex=True,na=True)) ]
             # vl1 = (vl['container type'].str.contains(lst,regex=True,na=True))
             if len(vl)>0:
                 if vl['operator'].to_string(index=False).strip()!='CMA':
@@ -86,29 +86,29 @@ button.pack()
 
 root.mainloop()
 #%%
-import pandas as pd
-from tkinter import filedialog
-df = pd.read_excel('output.xlsx')
-cntDf = pd.read_excel('Container_map.xlsx')
-Hrp = pd.read_excel('LOTUS A 0PE4UE1MA BEANR Revised.xls')
+# import pandas as pd
+# from tkinter import filedialog
+# df = pd.read_excel('output.xlsx')
+# cntDf = pd.read_excel('Container_map.xlsx')
+# Hrp = pd.read_excel('APL ANTWERP 0MXD3W1MA  INNSA.xls')
 
-Hrp.columns = Hrp.columns.str.strip().str.lower().str.replace('\n', '_').str.replace('(', '').str.replace(')', '')
-#%%
-# note , container type T!
-for i,id in df.iterrows():
-    if df.loc[i,'UN No']!="-":        
-        # vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) ]
-        lst = cntDf.loc[cntDf['Container_size']==id['Type'],'Map'].to_list()[0]
-        vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) & (Hrp['container type'].str.contains(lst,regex=True,na=True)) ]
-        # vl1 = (vl['container type'].str.contains(lst,regex=True,na=True))
-        if len(vl)>0:
-            if vl['operator'].to_string(index=False).strip()!='CMA':
-                df.loc[i,'Status'] = 'OK'
-            else:
-                df.loc[i,'Status'] = 'Out of scope'
-        else:
-            df.loc[i,'Status'] = 'NOT OK'
+# Hrp.columns = Hrp.columns.str.strip().str.lower().str.replace('\n', '_').str.replace('(', '').str.replace(')', '')
+# #%%
+# # note , container type T!
+# for i,id in df.iterrows():
+#     if df.loc[i,'UN No']!="-":        
+#         # vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) ]
+#         lst = cntDf.loc[cntDf['Container_size']==id['Type'],'Map'].to_list()[0]
+#         vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) & (Hrp['container type'].str.contains(lst,regex=True,na=True)) ]
+#         # vl1 = (vl['container type'].str.contains(lst,regex=True,na=True))
+#         if len(vl)>0:
+#             if vl['operator'].to_string(index=False).strip()!='CMA':
+#                 df.loc[i,'Status'] = 'OK'
+#             else:
+#                 df.loc[i,'Status'] = 'Out of scope'
+#         else:
+#             df.loc[i,'Status'] = 'NOT OK'
 
-df.to_excel('final_status1.xlsx')
+# df.to_excel('final_status1.xlsx')
 
 
