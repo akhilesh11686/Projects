@@ -32,8 +32,13 @@ def open_file(txt):
 
 def xlMail_dist():
 
+    dd1 = pd.read_excel(open_file("LCR_11 File"))
+    lst1 = dd1.iloc[:,0].to_list()
+    rw1 = lst1.index('Data Source',0)
+    df_11 = dd1.drop(index=dd1.index[:(rw1)])
+    df_11.columns= df_11.iloc[0]
     
-    df_11 = pd.read_excel(open_file("LCR_11 File"),skiprows=17)
+    # df_11 = pd.read_excel(open_file("LCR_11 File"),skiprows=17)
     # df_6 = pd.read_excel(open_file("LCR_06"),skiprows=17)
     rfMail = pd.read_excel(open_file("RFI Matrix"),sheet_name='AMS + VGM + POL QUERY')    
 
@@ -50,6 +55,13 @@ def xlMail_dist():
 
     # empty vgm Verify Gross Mass
     missVGM = NonEmpty[NonEmpty['Verify Gross Mass'].isnull()]
+
+    AvlVGM = NonEmpty[~NonEmpty['Verify Gross Mass'].isnull()]
+    
+    missVGM = missVGM[~missVGM['Container Number'].astype(str).isin(AvlVGM['Container Number'])]
+
+
+    
     Uniqu_First = missVGM['First POL'].drop_duplicates()
 
 
@@ -98,7 +110,12 @@ def xlMail_dist():
 # 06
 def xl_06():
     
-    df_6 = pd.read_excel(open_file("LCR_06"),skiprows=17)
+    dd = pd.read_excel(open_file("LCR_06"))
+    lst = dd.iloc[:,0].to_list()
+    rw = lst.index('Port',0)
+    df_6 = dd.drop(index=dd.index[:(rw)])
+    df_6.columns= df_6.iloc[0]
+    # df_6 = pd.read_excel(open_file("LCR_06"),skiprows=17)    
     rfMail = pd.read_excel(open_file("RFI Matrix"),sheet_name='AMS + VGM + POL QUERY')    
 
 
@@ -111,11 +128,15 @@ def xl_06():
     #exclude empty flage : Y
     NonEmpty = df_6[df_6['Empty']=='N']
 
+    # here code add......................................
+
     # empty vgm Verify Gross Mass
     missVGM = NonEmpty[NonEmpty['Verified Gross Mass'].isnull()]
   
-
+    AvlVGM = NonEmpty[~NonEmpty['Verified Gross Mass'].isnull()]
     
+    missVGM = missVGM[~missVGM['Container Number'].astype(str).isin(AvlVGM['Container Number'])]
+
     Uniqu_First = missVGM['First POL'].drop_duplicates()
 
 
