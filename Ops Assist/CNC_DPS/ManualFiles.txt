@@ -1,0 +1,2 @@
+File to be check manually are : CMS2CNC.xls
+File to be check manually are : HHX3CNC.xls

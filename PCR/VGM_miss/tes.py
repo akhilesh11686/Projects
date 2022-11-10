@@ -104,7 +104,7 @@ def xlMail_dist():
         else:
             missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Not Sent"
 
-    missVGM.to_excel("Sent_Mails_Status_11.xlsx")
+    missVGM.to_excel("Sent_Mails_Status_11.xlsx", index=False)
     messagebox.showinfo("Thank you!!","Completed..")    
     
 # 06
@@ -181,7 +181,7 @@ def xl_06():
         else:
             missVGM.loc[missVGM['First POL']==i,"Mail_Remark"] = "Not Sent"
 
-    missVGM.to_excel("Sent_Mails_Status_06.xlsx")
+    missVGM.to_excel("Sent_Mails_Status_06.xlsx", index=False)
     messagebox.showinfo("Thank you!!","Completed..")    
         
 
