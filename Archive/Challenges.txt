@@ -1,0 +1,11 @@
+*****************DATA Analysis**************************
+
+
+1. How to interact with LARA exe with python
+2. Skip or read captch
+3. Pandas dataframe read date nearest date
+4. In Shared mail box, identify the sender name i/o From Generic id
+5.Consolidation of Appendix service contract
+6.Shared mailbox, identify user name 
+7. AutoIndexing outlook mail to window python 
+

@@ -25,8 +25,8 @@ def proc():
     hrpFile = bro("Harp file")
     Hrp = pd.read_excel(hrpFile.name)
 
-    cnt = bro("Container map file")
-    cntDf = pd.read_excel(cnt.name)
+    # cnt = bro("Container map file")
+    # cntDf = pd.read_excel(cnt.name)
 
 
     xl['Value'] = xl['Value'].replace('Y','')
@@ -52,8 +52,13 @@ def proc():
     df['UN No'] = df['UN No'].str.replace('\n',",",)
     df['Class'] = df['Class'].str.replace('\n',",",)
     df['Group'] = df['Group'].str.replace('\n',",",)
-
-    df = (df.apply(lambda x: x.str.split(',').explode()).reset_index())
+    # try:
+    #     df = (df.apply(lambda x: x.str.split(',').explode()).reset_index())
+    # except:
+    #     pass 
+    # df.to_excel('PreCheck.xlsx',index=False)
+    # df = (df.apply(lambda x: x.str.split(',').explode()).reset_index())
+    df = (df.apply(lambda x: x.str.split(',').explode('UN No')).reset_index())
 
 
     df.to_excel('output.xlsx',index=False)
@@ -61,10 +66,12 @@ def proc():
     Hrp.columns = Hrp.columns.str.strip().str.lower().str.replace('\n', '_').str.replace('(', '').str.replace(')', '')
 
     for i,id in df.iterrows():
-        if df.loc[i,'UN No']!="-":        
+        if (df.loc[i,'UN No']!="-") & (~pd.isnull(df.loc[i,'UN No'])):        
             # vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(id['UN No'])) ]
-            lst = cntDf.loc[cntDf['Container_size']==id['Type'],'Map'].to_list()[0]
-            vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(float(id['UN No']))) & (Hrp['container type'].str.contains(lst,regex=True,na=True)) ]
+            # lst = cntDf.loc[cntDf['Container_size']==id['Type'],'Map'].to_list()[0]
+            #             
+            Cnt2_Dig = id['Type'][:1]
+            vl = Hrp[(Hrp['container_ no.']==id['Container']) & (Hrp['discharge _port']==id['POD']) & (Hrp['unno'].astype(str)==str(float(id['UN No']))) & (Hrp['container type'].str.contains(Cnt2_Dig,regex=True,na=True)) ]
             # vl1 = (vl['container type'].str.contains(lst,regex=True,na=True))
             if len(vl)>0:
                 if vl['operator'].to_string(index=False).strip()!='CMA':
@@ -85,10 +92,20 @@ button = Button(root, text='Cxml_to_xls', bg='#0052cc', fg='#ffffff',command=pro
 button.pack()
 
 root.mainloop()
-#%%
+# #%%
 # import pandas as pd
 # from tkinter import filedialog
-# df = pd.read_excel('output.xlsx')
+# df = pd.read_excel('PreCheck.xlsx')
+
+# #%%
+# df = (df.apply(lambda x: x.str.split(',').explode()).reset_index())
+
+
+
+
+
+# #%%
+
 # cntDf = pd.read_excel('Container_map.xlsx')
 # Hrp = pd.read_excel('APL ANTWERP 0MXD3W1MA  INNSA.xls')
 

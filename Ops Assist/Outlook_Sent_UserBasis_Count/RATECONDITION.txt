@@ -1,0 +1,105 @@
+
+
+import pandas as pd
+import re
+import sys
+from tkinter import filedialog
+
+from openpyxl import load_workbook
+
+def rWCnt(lbl):
+    strRow = df[df['Service Contract:'].astype('str').str.contains(lbl,regex=True,flags= re.IGNORECASE)].index[0]
+    return strRow
+
+def brows(file):
+    pth = filedialog.askopenfile(title=file)
+    return pth.name
+
+
+def myFunc(e):
+  return len(e)    
+
+df1 = pd.ExcelFile(brows('ChooseFile'))
+k = 21
+list_clmn = []
+dfList = []
+for sht in df1.sheet_names:
+    try:
+        
+        if "APPENDIX" in sht:
+            # dSht += sht + "|"
+            df = df1.parse(sht)
+            # df = pd.read_excel('1.xlsx')
+            # df = x
+            try:
+                strRow = rWCnt('RATES CONDITIONS')
+                endRow = rWCnt('REEFER')
+            except IndexError:
+                print('Lable missing')
+                sys.exit()
+                
+            df_Tbl = df.iloc[strRow:endRow]
+            lst = df_Tbl.isin(['Place of Receipt']).any(axis=1).to_list()
+            indVal = lst.index(True)
+
+            # df_Tbl.columns = df_Tbl.iloc[indVal]
+            df_Tbl.drop(df_Tbl.index[:indVal],axis=0,inplace=True)
+            df_Tbl.columns = df_Tbl.iloc[0]
+
+            for i in range(0,df_Tbl.shape[0]):
+                for j in range(0,df_Tbl.shape[1]):
+                    if pd.notnull(df_Tbl.iloc[(i+1),j]):
+                        df_Tbl.iloc[i,j] = str(df_Tbl.iloc[i,j])+"|"+str(df_Tbl.iloc[(i+1),j])        
+                break
+
+            df_Tbl = pd.DataFrame(df_Tbl.values[2:],columns=df_Tbl.iloc[0])
+            df_Tbl['Appendix_n'] = sht
+            for n in df_Tbl.columns:
+                list_clmn.append(n)
+            df_Tbl.to_excel("RESULT_"+ str(k)+ ".xlsx")
+            dfList.append(df_Tbl)
+            k += 1
+    except AttributeError:
+        pass    
+# print(list_clmn)
+
+# remove duplicate  
+kk = list(set(list_clmn))
+
+# remove duplicate and space
+nn = list(set([str(x).replace(" ","") for x in kk if pd.notna(x)]))
+nn.sort(reverse=False, key=myFunc)
+
+df2 = pd.DataFrame(columns=nn)
+
+nDF = pd.DataFrame()
+for d in dfList:
+    df_l = d
+    df_l = df_l.fillna("-")
+    # Clean the column replace space
+    nlst = [str(x).replace(" ","") for x in df_l.columns]
+    
+    # loop of common excel file
+    for cl in df2.columns:
+        if  cl in nlst:
+            print(cl)
+            getIndx = nlst.index(cl)
+            df2[cl]=df_l.iloc[:,getIndx]
+    df2 = df2.fillna("-")
+    nDF = pd.concat([df2,nDF])
+
+nDF.to_excel('result.xlsx')
+
+
+#%%
+
+
+
+
+
+
+
+
+
+
+

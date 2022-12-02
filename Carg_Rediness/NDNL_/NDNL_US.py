@@ -77,7 +77,10 @@ def fnlPro():
         # df.columns = df.iloc[rw]
 
         df = df[df['ASSIGNED CONTS'].astype(str).str.contains("0")]
-        vyg = df['VOYAGE'].drop_duplicates().to_string(index=False)
+        if len(df)>1:
+            vyg = df['VOYAGE'].drop_duplicates().to_string(index=False)
+        else:
+            vyg = df['VOYAGE'].index.to_list()[0]
         pol = outF.loc[outF['Voyage Ref']==vyg,'Port Code_y'].to_string(index=False)
 
         if len(df)>0:
@@ -131,4 +134,3 @@ btn.grid(row=20,column=1 ,padx = 5, pady = 40)
 
 
 root.mainloop()
-
