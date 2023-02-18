@@ -9,4 +9,6 @@
 6.Shared mailbox, identify user name 
 7. AutoIndexing outlook mail to window python 
 8.Column aligment in different possibl
+9.Get row address based on colorindex
+10. mergeAreaCount
 

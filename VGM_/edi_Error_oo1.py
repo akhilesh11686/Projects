@@ -1,6 +1,4 @@
 #%%
-from ast import Continue
-from cmath import e
 from tkinter import messagebox
 import pandas as pd
 from tkinter import ttk,filedialog

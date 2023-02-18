@@ -1,5 +1,6 @@
 
 #%%
+# 9-2-23
 import pandas as pd
 import win32com.client as win32
 import win32com.client
@@ -37,6 +38,8 @@ def xlMail_dist():
     rw1 = lst1.index('Data Source',0)
     df_11 = dd1.drop(index=dd1.index[:(rw1)])
     df_11.columns= df_11.iloc[0]
+
+    df_11 = df_11[df_11['Last Tracking Move']!='XRX']
     
     # df_11 = pd.read_excel(open_file("LCR_11 File"),skiprows=17)
     # df_6 = pd.read_excel(open_file("LCR_06"),skiprows=17)
@@ -47,8 +50,10 @@ def xlMail_dist():
     lUnt = df_11[df_11['PTS Code']==df_11['Final POD']].index
     df_11.drop(lUnt,inplace=True)
 
-    # exclude 1|9
-    excl_1_9 =df_11[~df_11['Booking Status'].astype('str').str.contains('1|9')]
+    # exclude 1|9|0|60
+    # excl_1_9 =df_11[~df_11['Booking Status'].astype('str').str.contains('1|9|0|60')]
+    # excl_1_9 =df_11[~df_11['Booking Status'].astype('str').str.contains('|'.join(['0', '1', '9', '60']))]
+    excl_1_9= df_11.loc[~df_11['Booking Status'].isin(['1','9','0','60'])]
 
     #exclude empty flage : Y
     NonEmpty = excl_1_9[excl_1_9['Empty Flag']=='N']
